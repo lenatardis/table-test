@@ -23,13 +23,7 @@ export default function App() {
         <div className="wrap">
             <StyleTag />
             <h1>Демо: копі-паст діапазонів у грід</h1>
-            <p className="hint">
-                Скопіюй у Google Sheets діапазон <b>B2:D4</b> з числами й встав у клітинку
-                <b> B2</b> нижче (фокус у першу праву від назви товару). Працюють і часткові
-                діапазони (напр., <b>B2:D2</b>). Все, що виходить за межі — обрізається.
-            </p>
             <TableGrid />
-            <FooterNote />
         </div>
     );
 }
