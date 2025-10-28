@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [ master ]   # ← у тебе master
+    branches: [ master ]   # у тебе master
   workflow_dispatch:
 
 permissions:
@@ -17,17 +18,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'          # якщо npm — заміни на 'npm'
-      - run: corepack enable     # для pnpm; якщо npm — можеш прибрати
-      - run: pnpm install --frozen-lockfile   # або: npm ci
-      - run: pnpm run build                     # або: npm run build
-      - run: cp dist/index.html dist/404.html
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: ./dist }
+
+      # ⬇️ Спочатку вмикаємо Corepack і активуємо pnpm
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Prepare pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Show pnpm version
+        run: pnpm -v
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: SPA fallback (404 -> index.html)
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
   deploy:
     environment:
       name: github-pages
@@ -35,5 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
