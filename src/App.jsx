@@ -148,8 +148,7 @@ body { margin: 0; }
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-h2 {
-font-size: 30px;}
+h1 {font-size: 30px;}
 
 .grid4 {
   display: grid;
