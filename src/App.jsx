@@ -28,6 +28,7 @@ export default function App() {
     );
 }
 
+
 function TableGrid() {
     const [cells, setCells] = useState(makeInitialData());
     const inputsRef = useRef({});
