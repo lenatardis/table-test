@@ -1,13 +1,5 @@
 import { useState, useRef } from "react";
 
-/**
- * Один файл з усім:
- * - 4×4 грід (row0 — заголовки, col0 — назви товарів)
- * - редаговані клітинки B2..D4
- * - paste з Excel/Google Sheets (html -> table або plain TSV)
- * - зайве обрізається по межах гріда
- */
-
 const HEADERS = ["Назва", "Ціна опт", "Ціна роздріб", "Ціна спец"];
 const ROW_LABELS = ["Товар 1", "Товар 2", "Товар 3"];
 
@@ -136,7 +128,7 @@ function TableGrid() {
     );
 }
 
-/* стилі вбудовані тут же, щоб нічого не губити */
+
 function StyleTag() {
     const css = `
 :root {
@@ -156,7 +148,8 @@ body { margin: 0; }
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.hint { color: #555; margin-bottom: 16px; }
+h2 {
+font-size: 30px;}
 
 .grid4 {
   display: grid;
@@ -213,11 +206,6 @@ body { margin: 0; }
   border-radius: 6px;
 }
 
-footer.note {
-  margin-top: 16px;
-  color: #6b7280;
-  font-size: 13px;
-}
   `;
     return <style>{css}</style>;
 }
