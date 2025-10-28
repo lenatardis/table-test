@@ -22,7 +22,7 @@ export default function App() {
     return (
         <div className="wrap">
             <StyleTag />
-            <h1>Демо: копі-паст діапазонів у грід</h1>
+            <h1>Демо: копі-паст діапазонів у таблицю</h1>
             <TableGrid />
         </div>
     );
